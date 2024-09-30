@@ -1,0 +1,20 @@
+<h1>Lista Usuarios</h1>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Nickname</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let usuario of usuarios">
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.apellido }}</td>
+            <td>{{ usuario.nickname }}</td>
+            <td>{{ usuario.email }}</td>
+        </tr>
+    </tbody>
+</table>

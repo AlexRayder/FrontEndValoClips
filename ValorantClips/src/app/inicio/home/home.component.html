@@ -1,0 +1,55 @@
+<!-- <a [routerLink]="['/login']">Login</a>
+<a [routerLink]="['/usuarios']">Usuarios</a> -->
+
+
+    <div [class.active]="sidebarActive" class="sidebar">
+    <div class="top">
+      <div class="logo">
+        <i class="bx bxl-codepen"></i>
+        <span>ValorantClips</span>
+      </div>
+      <i class="bx bx-menu" id="btn" (click)="toggleSidebar()"></i>
+    </div>
+
+    <div class="user">
+      <img src="imagenes/AsaMitakaPerfil.jpg" alt="perfil" class="user-img">
+      <div>
+        <p class="bold">Asa Mikata</p>
+        <p>Admin</p>
+      </div>
+    </div>
+
+    <ul>
+      <li>
+        <a href="">
+          <i class="bx bxs-grid-alt"></i>
+          <span class="nav-item">Deshboard</span>
+        </a>
+        <span class="tooltip">Deshboard</span>
+      </li>
+
+      <li>
+        <a href="">
+          <i class='bx bx-list-check'></i>
+          <span class="nav-item">Categoria</span>
+        </a>
+        <span class="tooltip">Categoria</span>
+      </li>
+
+      <li>
+        <a href="">
+          <i class='bx bxs-movie-play'></i>
+          <span class="nav-item">Videos</span>
+        </a>
+        <span class="tooltip">Videos</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="container">
+        <h1>Ingeniero Alex</h1>
+    </div>
+  </div>
+
+
