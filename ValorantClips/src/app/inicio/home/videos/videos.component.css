@@ -1,0 +1,37 @@
+.container {
+    position: absolute;
+    top: 10%; /* Ajusta según necesites */
+    left: 50%;
+    transform: translateX(-50%); /* Centra el contenedor */
+    z-index: 30;
+    width: 80%; /* Ajusta el ancho del contenedor según tu necesidad */
+    max-height: 80vh; /* Máxima altura del contenedor */
+    overflow: hidden; /* Oculta el desbordamiento */
+}
+
+.juntar {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: center; /* Centra los videos horizontalmente */
+    transition: transform 0.5s ease; /* Agrega una transición suave al cambiar de video */
+}
+
+.video {
+    display: none; /* Oculta todos los videos inicialmente */
+    width: 100%; /* Ajusta el ancho del video al contenedor */
+    height: 80vh; /* Máxima altura del contenedor */
+}
+
+.video.active {
+    display: block; /* Muestra solo el video activo */
+    animation: fadeIn 0.5s; /* Agrega animación al video activo */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

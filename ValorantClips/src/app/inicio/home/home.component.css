@@ -162,4 +162,178 @@
 .container{
     display: flex;
     justify-content: space-between;
+    overflow-y: auto;
 }
+
+
+.darkmode-active {
+    background-color: black;
+    color: white;
+}
+
+.sidebar.darkmode-active {
+    background-color: #1e1e1e; /* Adjust this color */
+}
+
+.main-content.darkmode-active {
+    background-color: #2e2e2e; /* Adjust this color */
+}
+
+/* Dark Mode Styles */
+.darkmode-active {
+    background-color: #2e2e2e;
+    color: white;
+}
+
+.sidebar.darkmode-active {
+    background-color: #1e1e1e; /* Adjust this color */
+}
+
+.main-content.darkmode-active {
+    background-color: #2e2e2e; /* Adjust this color */
+}
+
+
+.switch {
+  display: block;
+  --width-of-switch: 3.5em;
+  --height-of-switch: 2em;
+  --size-of-icon: 1.4em;
+  --slider-offset: 0.3em;
+  position: relative;
+  width: var(--width-of-switch);
+  height: var(--height-of-switch);
+}
+
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f4f4f5;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--size-of-icon,1.4em);
+  width: var(--size-of-icon,1.4em);
+  border-radius: 20px;
+  left: var(--slider-offset,0.3em);
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(40deg,#ff0080,#ff8c00 70%);
+;
+ transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #303136;
+}
+
+input:checked + .slider:before {
+  left: calc(100% - (var(--size-of-icon,1.4em) + var(--slider-offset,0.3em)));
+  background: #303136;
+  box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}
+
+/*search*/
+
+.search {
+    position: absolute;
+    top: 20px; /* Ajusta este valor según tus necesidades */
+    left: 50%;
+    transform: translateX(-50%); /* Centra el elemento horizontalmente */
+    z-index: 30;
+    display: flex; /* Asegura que los hijos se alineen correctamente */
+    justify-content: center; /* Centra horizontalmente los elementos hijos */
+    align-items: center; /* Centra verticalmente los elementos hijos */
+    border-radius: 12px;
+}
+
+
+.group {
+    display: flex;
+    line-height: 28px;
+    align-items: center;
+    position: relative;
+  }
+  
+  .input {
+    font-family: "Montserrat", sans-serif;
+    width: 500px;
+    height: 45px;
+    padding-left: 2.5rem;
+    box-shadow: 0 0 0 1.5px #2b2c37, 0 0 25px -17px #000;
+    border: 0;
+    border-radius: 12px;
+    background-color: #ffffff;
+    outline: none;
+    color: #2b2c37;
+    transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+    cursor: text;
+    z-index: 0;
+}
+
+.input::placeholder {
+    color: #2b2c37;
+}
+  
+  .input:hover {
+    box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
+  }
+  
+  .input:active {
+    transform: scale(0.95);
+  }
+  
+  .input:focus {
+    box-shadow: 0 0 0 2.5px #2f303d;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    fill: #2b2c37;
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+
+  /* Estilos para el modo oscuro */
+.darkmode-active .search {
+    /* Cambia el fondo del contenedor de búsqueda */
+    background-color: #303136; /* O el color que desees para el fondo */
+}
+
+.darkmode-active .input {
+    background-color: #1e1e1e; /* Cambia el fondo del input */
+    color: #fff; /* Cambia el color del texto */
+    box-shadow: 0 0 0 1.5px #2b2c37, 0 0 25px -17px #000;
+}
+
+.darkmode-active .input::placeholder {
+    color: #b0b0b0; /* Cambia el color del placeholder */
+}
+
+.darkmode-active .search-icon {
+    fill: #b0b0b0; /* Cambia el color del ícono de búsqueda */
+}
+
+.darkmode-active .input:focus {
+    box-shadow: 0 0 0 2.5px #1a1b27;
+  }
