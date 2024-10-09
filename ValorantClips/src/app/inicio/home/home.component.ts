@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VideosComponent } from '../home/videos/videos.component';
 import { UsuariosComponent } from '../usuarios/usuarios.component';
+import { SubirVideoComponent } from './subir-video/subir-video.component';
 
 @Component({
   selector: 'app-home',
@@ -35,6 +36,8 @@ export class HomeComponent implements OnInit {
       this.selectedComponent = VideosComponent;
     } else if (componentName === 'usuarios') {
       this.selectedComponent = UsuariosComponent;
+    } else if (componentName === 'subirvideo') {
+      this.selectedComponent = SubirVideoComponent;
     } else {
       this.selectedComponent = null; // Establecer en null si no hay coincidencias
     }

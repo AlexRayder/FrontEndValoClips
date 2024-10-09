@@ -1,0 +1,43 @@
+<ng-template #dialogTemplate>
+  <h2 mat-dialog-title>Subir videos</h2>
+  <mat-dialog-content>
+    <div class="upload-modal-content">
+      <div class="upload-icon" (click)="triggerFileInput()">
+        <img src="imagenes/upload.png" alt="Upload Icon" />
+      </div>
+      <p>Arrastra y suelta archivos de video para subirlos</p>
+      <p>Tus videos serán privados hasta que los publiques.</p>
+      <button mat-button class="select-files-btn" (click)="triggerFileInput()">Seleccionar archivos</button>
+      <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept="video/*" multiple />
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+  </mat-dialog-actions>
+</ng-template>
+
+
+<ng-template #detailsDialog>
+  <h2 mat-dialog-title>Detalles del Video</h2>
+  <mat-dialog-content class="video-details-content">
+    <mat-form-field appearance="fill">
+      <mat-label>Título</mat-label>
+      <input matInput [(ngModel)]="videoTitle" placeholder="Título del video" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput [(ngModel)]="videoDescription" placeholder="Descripción del video"></textarea>
+    </mat-form-field>
+    <p>Archivo seleccionado: <strong>{{ selectedFileName }}</strong></p>
+    <p>Tamaño: <strong>{{ selectedFileSize.toFixed(2) }} MB</strong></p>
+    
+    <!-- Mostrar la miniatura del video -->
+    <div *ngIf="videoThumbnail" class="video-thumbnail">
+      <video [src]="videoThumbnail" width="300" controls></video>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-button (click)="uploadVideo()">Subir Video</button>
+  </mat-dialog-actions>
+</ng-template>

@@ -1,0 +1,54 @@
+.upload-modal-content {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .upload-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    cursor: pointer; /* Añadido para indicar interactividad */
+  }
+  
+  .upload-icon img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .select-files-btn {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #000000; /* Texto negro */
+    border: 1px solid #cccccc; /* Borde gris */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado */
+    font-weight: bold; /* Negrita */
+    margin-top: 20px;
+  }
+  
+  mat-dialog-content p {
+    font-size: 14px; /* Tamaño de texto */
+    color: #999999; /* Color gris claro */
+  }
+  
+  .video-details-content {
+    margin-top: 20px; /* Espaciado superior */
+  }
+  
+  mat-form-field {
+    display: block;
+    margin-bottom: 20px; /* Espaciado inferior */
+  }
+  
+
+  .video-thumbnail {
+    margin-top: 20px;
+    text-align: center; /* Centra la miniatura */
+  }
+  
+  .video-thumbnail video {
+    border-radius: 5px; /* Bordes redondeados para el video */
+  }
+  
