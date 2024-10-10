@@ -166,11 +166,6 @@
 }
 
 
-.darkmode-active {
-    background-color: black;
-    color: white;
-}
-
 .sidebar.darkmode-active {
     background-color: #1e1e1e; /* Adjust this color */
 }
@@ -320,6 +315,15 @@ input:checked + .slider:before {
     background-color: #303136; /* O el color que desees para el fondo */
 }
 
+
+
+  .darkmode-active .main-content {
+    background-color: #333333;
+  }
+  
+  .darkmode-active .container {
+    background-color: #444444;
+  }
 .darkmode-active .input {
     background-color: #1e1e1e; /* Cambia el fondo del input */
     color: #fff; /* Cambia el color del texto */

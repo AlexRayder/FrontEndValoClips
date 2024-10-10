@@ -3,3 +3,21 @@ body{
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.darkmode-active .mat-dialog-container {
+    background-color: #2e2e2e !important;
+    color: #ffffff !important;
+  }
+  
+  .darkmode-active .mat-input-element {
+    color: #ffffff !important;
+  }
+  
+  .darkmode-active .mat-dialog-content {
+    background-color: #333333 !important;
+  }
+  
+  .darkmode-active .mat-dialog-actions button {
+    color: #ffffff !important;
+  }
+  

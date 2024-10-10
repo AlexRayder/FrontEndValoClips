@@ -8,7 +8,7 @@
       <p>Arrastra y suelta archivos de video para subirlos</p>
       <p>Tus videos serán privados hasta que los publiques.</p>
       <button mat-button class="select-files-btn" (click)="triggerFileInput()">Seleccionar archivos</button>
-      <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept="video/*" multiple />
+      <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept="video/*" />
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
@@ -16,28 +16,142 @@
   </mat-dialog-actions>
 </ng-template>
 
-
 <ng-template #detailsDialog>
-  <h2 mat-dialog-title>Detalles del Video</h2>
+  <h2 mat-dialog-title>{{ selectedFileName ? videoTitle : 'Título del video' }}</h2>
+
+  <div class="button-group">
+    <button mat-button (click)="showDetails()">Detalles</button>
+    <button mat-button (click)="showVideoElements()">Elementos del Video</button>
+    <button mat-button (click)="showVerification()">Verificación</button>
+    <button mat-button (click)="showVisibility()">Visibilidad</button>
+  </div>
+
   <mat-dialog-content class="video-details-content">
-    <mat-form-field appearance="fill">
-      <mat-label>Título</mat-label>
-      <input matInput [(ngModel)]="videoTitle" placeholder="Título del video" />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Descripción</mat-label>
-      <textarea matInput [(ngModel)]="videoDescription" placeholder="Descripción del video"></textarea>
-    </mat-form-field>
-    <p>Archivo seleccionado: <strong>{{ selectedFileName }}</strong></p>
-    <p>Tamaño: <strong>{{ selectedFileSize.toFixed(2) }} MB</strong></p>
-    
-    <!-- Mostrar la miniatura del video -->
-    <div *ngIf="videoThumbnail" class="video-thumbnail">
-      <video [src]="videoThumbnail" width="300" controls></video>
+    <!-- Barra de Progreso -->
+    <div class="progress-container">
+      <div class="progress-bar" [ngStyle]="{ width: progressPercentage + '%' }"></div>
     </div>
+
+    <div *ngIf="activeTab === 'details'">
+      <mat-form-field appearance="fill">
+        <mat-label>Título</mat-label>
+        <input matInput [(ngModel)]="videoTitle" placeholder="Título del video" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput [(ngModel)]="videoDescription" placeholder="Descripción del video"></textarea>
+      </mat-form-field>
+      <p>Archivo seleccionado: <strong>{{ selectedFileName }}</strong></p>
+      <p>Tamaño: <strong>{{ selectedFileSize.toFixed(2) }} MB</strong></p>
+      <div *ngIf="videoThumbnail" class="video-thumbnail">
+        <video [src]="videoThumbnail" width="300" controls></video>
+      </div>
+    </div>
+
+    <!-- Elementos Videos -->
+    <div *ngIf="activeTab === 'elements'">
+      <div class="card-container">
+        <mat-card class="video-element-card">
+          <mat-card-header>
+            <mat-card-title>Agregar Subtítulos</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Agrega subtítulos a tu video para llegar a un público más amplio.</p>
+            <button mat-button (click)="addSubtitles()">Agregar Subtítulos</button>
+          </mat-card-content>
+        </mat-card>
+    
+        <mat-card class="video-element-card">
+          <mat-card-header>
+            <mat-card-title>Agregar Pantalla Final</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Promociona contenido relacionado al final de tu video.</p>
+            <button mat-button (click)="addEndScreen()">Agregar Pantalla Final</button>
+          </mat-card-content>
+        </mat-card>
+    
+        <mat-card class="video-element-card">
+          <mat-card-header>
+            <mat-card-title>Agregar Tarjetas</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Promociona contenido relacionado durante tu video.</p>
+            <button mat-button (click)="addCards()">Agregar Tarjetas</button>
+          </mat-card-content>
+        </mat-card>
+    
+
+      </div>
+    </div>
+
+   <!-- Verificacion -->
+    <div *ngIf="activeTab === 'verification'">
+      <div class="verification-content">
+        <h3>Verificaciones</h3>
+        <p>Verificaremos tu video en busca de problemas que podrían restringir su visibilidad y, luego, podrás corregirlos antes de publicarlo. <a href="#">Más información</a></p>
+
+        <h4>Derechos de autor</h4>
+        <p>No se encontraron problemas</p>
+
+        <p class="reminder">
+          Recuerda: Estos resultados de las verificaciones no son definitivos. Más adelante pueden presentarse problemas que afecten a tu video. <a href="#">Más información</a>
+        </p>
+
+        <button mat-button>Enviar comentarios</button>
+      </div>
+    </div>
+
+   <!-- Verificacion -->
+    
+   <div *ngIf="activeTab === 'visibility'">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Configura tu video como:
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+      <div class="visibility-options">
+        <mat-radio-group [(ngModel)]="videoVisibility">
+          <mat-radio-button value="privado">
+            <strong>Privado:</strong> Solo tú y las personas que elijas pueden mirar tu video.
+          </mat-radio-button>
+          <mat-radio-button value="noListado">
+            <strong>No listado:</strong> Cualquier persona con el vínculo del video puede mirarlo.
+          </mat-radio-button>
+          <mat-radio-button value="publico">
+            <strong>Público:</strong> Cualquier persona puede mirar tu video.
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    
+    </mat-expansion-panel>
+    
+    
+    <p><strong>Configurar como Estreno instantáneo</strong></p>
+    
+    <p><strong>Programar:</strong> Selecciona una fecha de publicación del video.</p>
+    
+    <h3>Antes de publicar el video, comprueba lo siguiente:</h3>
+    <ul>
+      <li>
+        ¿Aparecen niños en este video? Asegúrate de cumplir con nuestras políticas de protección de menores contra daño, explotación y bullying, así como aquellas relacionadas con la infracción de leyes laborales. <a href="#">Más información</a>
+      </li>
+      <li>
+        ¿Buscas orientación general sobre contenido? Nuestros Lineamientos de la Comunidad pueden ayudarte a evitar problemas y garantizar que YouTube siga siendo una comunidad segura y dinámica. <a href="#">Más información</a>
+      </li>
+    </ul>
+  
+    <h4>Vínculo del video</h4>
+    <p><a href="https://youtu.be/4jXpI1T-ZSA">https://youtu.be/4jXpI1T-ZSA</a></p>
+  </div>
+  
+    
   </mat-dialog-content>
+
   <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cerrar</button>
     <button mat-button (click)="uploadVideo()">Subir Video</button>
+    <button mat-button mat-dialog-close>Cerrar</button>
   </mat-dialog-actions>
 </ng-template>
